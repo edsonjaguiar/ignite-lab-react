@@ -1,20 +1,49 @@
-import { FormEvent, useState } from 'react';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { GithubLogo } from 'phosphor-react';
+import { FormEvent } from 'react';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import * as yup from 'yup';
 import { Logo } from '../components/Logo';
 import { useCreateSubscriberMutation } from '../graphql/generated';
 import codeMockupImg from '/src/assets/code-mockup.png';
 
-export function Subscribe() {
-    const navigate = useNavigate();
+interface InputFormTypes {
+    name: string;
+    email: string;
+}
 
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
+const validationForm = yup
+    .object({
+        name: yup
+            .string()
+            .required('O campo nome é obrigatório')
+            .min(2, 'Mínimo de caracteres(2)')
+            .max(100, 'Máx de caracteres(100)'),
+        email: yup
+            .string()
+            .required('O campo email é obrigatório')
+            .min(2, 'Mínimo de caracteres(2)')
+            .max(100, 'Máx de caracteres(100)')
+            .email('Digite um e-mail válido'),
+    })
+    .required();
+
+export function Subscribe() {
+    const {
+        register,
+        formState: { errors },
+        handleSubmit,
+    } = useForm<InputFormTypes>({ resolver: yupResolver(validationForm) });
+
+    const navigate = useNavigate();
 
     const [createSubscriber, { loading }] = useCreateSubscriberMutation();
 
-    async function handleSubscribe(e: FormEvent) {
-        e.preventDefault();
-
+    const handleSubscribe: SubmitHandler<FieldValues> = async ({
+        name,
+        email,
+    }) => {
         await createSubscriber({
             variables: {
                 name,
@@ -23,11 +52,11 @@ export function Subscribe() {
         });
 
         navigate('/event');
-    }
+    };
 
     return (
         <div className="min-h-screen bg-blur bg-cover bg-no-repeat flex flex-col items-center">
-            <div className="w-full max-w-[1100px] flex items-center justify-between mt-20 mx-auto">
+            <div className="w-full max-w-[1100px] flex items-center justify-between mt-20 mx-auto sm:flex-1 flex-wrap gap-16">
                 <div className="max-w-[640px]">
                     <Logo />
 
@@ -53,21 +82,26 @@ export function Subscribe() {
                     </strong>
 
                     <form
-                        onSubmit={handleSubscribe}
-                        className="flex flex-col gap-2 w-full"
+                        onSubmit={(e: FormEvent) =>
+                            handleSubmit(handleSubscribe)(e)
+                        }
+                        className="flex flex-col gap-2 w-full justify-center"
                     >
                         <input
                             type="text"
                             placeholder="Seu nome completo"
                             className="bg-gray-900 roundend px-5 h-14"
-                            onChange={(e) => setName(e.target.value)}
+                            {...register('name')}
                         />
+                        <p className="text-red-500">{errors.name?.message}</p>
+
                         <input
                             type="email"
                             placeholder="Digite seu e-mail"
                             className="bg-gray-900 roundend px-5 h-14"
-                            onChange={(e) => setEmail(e.target.value)}
+                            {...register('email')}
                         />
+                        <p className="text-red-500">{errors.email?.message}</p>
 
                         <button
                             type="submit"
@@ -77,6 +111,22 @@ export function Subscribe() {
                             Garantir minha vaga
                         </button>
                     </form>
+
+                    <div className="flex flex-col gap-2 w-full">
+                        <p className="flex items-center mt-4">
+                            <span className="flex-1 border mr-4"></span>
+                            Ou
+                            <span className="flex-1 border ml-4"></span>
+                        </p>
+
+                        <button
+                            type="button"
+                            className="flex justify-center gap-2 mt-5 bg-gray-800 uppercase py-4 roundend font-bold text-small hover:bg-gray-900 transition-colors"
+                        >
+                            <GithubLogo size={20} />
+                            Login com Github
+                        </button>
+                    </div>
                 </div>
             </div>
             <img src={codeMockupImg} alt="" className="mt-10" />
