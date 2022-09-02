@@ -59,6 +59,7 @@ export function Subscribe() {
             },
         });
 
+        localStorage.setItem('token_access', 'true');
         navigate('/event');
     };
 
@@ -68,6 +69,7 @@ export function Subscribe() {
         const result = await signInWithPopup(firebaseAuth, provider);
         setIsLogin(true);
         localStorage.setItem('token_access', 'true');
+        navigate('/event');
     }
 
     useEffect(() => {
