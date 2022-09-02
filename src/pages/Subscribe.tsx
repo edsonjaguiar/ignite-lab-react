@@ -59,7 +59,6 @@ export function Subscribe() {
             },
         });
 
-        localStorage.setItem('token_access', 'true');
         navigate('/event');
     };
 
