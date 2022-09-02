@@ -2,12 +2,12 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-    apiKey: 'AIzaSyB9ZakNVI1mCRHySAr8QO2IRywkDNinXds',
-    authDomain: 'ignite-lab-react.firebaseapp.com',
-    projectId: 'ignite-lab-react',
-    storageBucket: 'ignite-lab-react.appspot.com',
-    messagingSenderId: '387888757203',
-    appId: '1:387888757203:web:af7abae9c5016dbd6b9726',
+    apiKey: import.meta.env.VITE_API_KEY,
+    authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_MESSAGING_SENDERID,
+    appId: import.meta.env.VITE_APP_ID,
 };
 
 // Initialize Firebase
