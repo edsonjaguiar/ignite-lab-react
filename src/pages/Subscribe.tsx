@@ -6,7 +6,7 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { Logo } from '../components/Logo';
-import { firebaseAuth } from '../config/fibebase-config';
+import { firebaseAuth } from '../config/firebase-config';
 import { githubProvider } from '../config/githubProvider';
 import { useCreateSubscriberMutation } from '../graphql/generated';
 import codeMockupImg from '/src/assets/code-mockup.png';
