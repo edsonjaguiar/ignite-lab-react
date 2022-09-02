@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AuthProvider, signInWithPopup } from 'firebase/auth';
 import { GithubLogo } from 'phosphor-react';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
@@ -70,6 +70,12 @@ export function Subscribe() {
         setIsLogin(true);
         localStorage.setItem('token_access', 'true');
     }
+
+    useEffect(() => {
+        if (localStorage.getItem('token_access')) {
+            navigate('/event');
+        }
+    }, []);
 
     return (
         <div className="min-h-screen bg-blur bg-cover bg-no-repeat flex flex-col items-center">
