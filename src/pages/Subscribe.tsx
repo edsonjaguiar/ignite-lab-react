@@ -84,11 +84,11 @@ export function Subscribe() {
                 <>{navigate('/event')}</>
             ) : (
                 <>
-                    <div className="w-full max-w-[1100px] flex items-center justify-between mt-20 mx-auto sm:flex-1 flex-wrap gap-16">
-                        <div className="max-w-[640px]">
+                    <div className="w-full max-w-[1100px] flex flex-col flex-wrap  gap-14 items-center justify-center md:flex-row md:items-center mt-20 mx-auto sm:flex-1">
+                        <div className="max-w-[640px] mx-6 flex flex-col items-center justify-center md:justify-start md:items-start">
                             <Logo />
 
-                            <h1 className="mt-8 text-[2.5rem] leading-tight">
+                            <h1 className="mt-8 md:text-start sm:text-center text-[2.5rem] leading-tight">
                                 Construa uma{' '}
                                 <strong className="text-blue-500">
                                     aplicação completa
@@ -97,7 +97,7 @@ export function Subscribe() {
                                 <strong className="text-blue-500">React</strong>
                             </h1>
 
-                            <p className="mt-4 text-gray-200 leading-relaxed">
+                            <p className="mt-4 text-gray-200 leading-relaxed md:text-start sm:text-center">
                                 Em apenas uma semana você vai dominar na prática
                                 uma das tecnologias mais utilizadas e com alta
                                 demanda para acessar as melhores oportunidades
