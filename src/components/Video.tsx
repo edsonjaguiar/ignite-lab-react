@@ -30,7 +30,7 @@ export function Video(props: VideoProps) {
 
     return (
         <div className="flex-1">
-            <div className="bg-black flex justify-center">
+            <div className="bg-black">
                 <div className="h-full w-full max-w-[1100px] max-h-[60vh] aspect-video">
                     <Player>
                         <Youtube videoId={data.lesson.videoId} />
@@ -39,7 +39,7 @@ export function Video(props: VideoProps) {
                 </div>
             </div>
             <div className="p-8 max-w-[1100px] mx-auto">
-                <div className="flex items-start gap-16">
+                <div className="flex items-start gap-16 flex-col md:flex-row">
                     <div className="flex-1">
                         <h1 className="text-2xl font-bold">
                             {data.lesson.title}
@@ -86,7 +86,7 @@ export function Video(props: VideoProps) {
                         </a>
                     </div>
                 </div>
-                <div className="gap-8 mt-20 grid grid-cols-2">
+                <div className="gap-8 mt-20 grid grid-rows md:grid-cols-2">
                     <a
                         href=""
                         className="bg-gray-700 rounded overflow-hidden flex items-stretch gap-6 hover:bg-gray-600 transition-colors"
