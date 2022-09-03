@@ -25,7 +25,6 @@
 -   React-hook-form
 -   Yup
 -   React-lottie
--   React-lottie
 
 ---
 
