@@ -1,7 +1,7 @@
 import { CaretCircleLeft } from 'phosphor-react';
 import ReactLottie from 'react-lottie';
 import { Link } from 'react-router-dom';
-import rocket from '../assets/rocket.json';
+import notFound from '../assets/notFound.json';
 
 const defaultOptions = {
     loop: true,
@@ -16,7 +16,7 @@ export function PageNotFound() {
         <div className="flex items-center justify-center gap-20">
             <div className="hidden lg:block lg:visible">
                 <ReactLottie
-                    options={{ animationData: rocket, ...defaultOptions }}
+                    options={{ animationData: notFound, ...defaultOptions }}
                     width={500}
                     height={500}
                 />
@@ -27,7 +27,7 @@ export function PageNotFound() {
                     Error 404!
                 </h1>
                 <p className="text-sm mt-4 text-center text-gray-300 sm:text-base">
-                    A página que você requisitou não encontrada
+                    A página que você requisitou não foi encontrada
                 </p>
 
                 <Link
